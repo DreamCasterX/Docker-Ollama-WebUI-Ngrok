@@ -1,17 +1,14 @@
-# Deploy Local LLM 
+# Ollama & Open WebUI Docker Compose Setup
 
-## Ollama Docker Compose Setup with Open WebUI
- 1. Put all the scripts into a single folder and `cd` to it
-
-    
- 2. Run `bash docker-install.sh` to install Docker and NVIDIA container toolkit (if supported)
-
-    
- 3. Run `dockerdocker compose up -d` to power with CPU<br/>Alternatively, run `docker compose -f docker-compose-NV-GPU up -d` to power with NVIDIA GPU (better performance)
-
-   
- 4. Visit `localhost:8080` from your browser to open WebUI
+####  Install Docker and NVIDIA container toolkit (if supported)
++ Run `bash docker-install.sh` 
+#
+#### Install Ollama and Open WebUI
++ Run `dockerdocker compose up -d` to power with CPU<br/>Alternatively, run `docker compose -f docker-compose-NV-GPU up -d` to power with NVIDIA GPU (better performance)
+#
+#### Last
++ Open your browser and visit `localhost:8080`<br/>
 
 
 ## Test enviroment
-Ubuntu 22.04 LTS
+#### Ubuntu 22.04 LTS
