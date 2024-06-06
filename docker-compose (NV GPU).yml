@@ -1,5 +1,4 @@
-version: '3.8'
-services:  
+services:
   ollama:
     image: ollama/ollama:latest
     ports:
@@ -18,8 +17,8 @@ services:
           devices:
             - driver: nvidia
               count: 1
-              capabilities: [gpu]
-          
+              capabilities: [ gpu ]
+
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     container_name: open-webui
@@ -39,4 +38,4 @@ services:
 
 networks:
   ollama-docker:
-    external: false            
+    external: false
