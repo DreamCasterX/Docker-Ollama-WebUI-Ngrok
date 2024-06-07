@@ -48,7 +48,7 @@ case $PKG in
 		sudo nvidia-ctk runtime configure --runtime=docker
 		sudo systemctl restart docker
 		# Test GPU integration
-		docker run --gpus all nvidia/cuda:11.5.2-base-ubuntu20.04 nvidia-smi
+		sudo docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
 		echo -e "\e[32mDone!\e[0m"
 	else
 		echo -e "NVIDIA driver is not installed. Stop configuring with GPU" && exit 1
@@ -93,7 +93,7 @@ case $PKG in
 		sudo nvidia-ctk runtime configure --runtime=docker
 		sudo systemctl restart docker
 		# Test GPU integration
-		docker run --gpus all nvidia/cuda:11.5.2-base-ubuntu20.04 nvidia-smi
+		sudo docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
 		echo -e "\e[32mDone!\e[0m"
 	else
 		echo -e "NVIDIA driver is not installed. Stop configuring with GPU" && exit 1
