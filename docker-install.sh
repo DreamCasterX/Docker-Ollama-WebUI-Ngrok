@@ -63,21 +63,22 @@ case $PKG in
 	echo "│                                       │"
 	echo "╰───────────────────────────────────────╯"
 	echo
-	wget 'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.6.33-3.1.el9.x86_64.rpm'
-	wget 'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.14.1-1.el9.x86_64.rpm'
-	wget 'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-26.1.4-1.el9.x86_64.rpm'
-	wget 'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-26.1.4-1.el9.x86_64.rpm'
-	wget 'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-26.1.4-1.el9.x86_64.rpm'
-	wget 'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.27.1-1.el9.x86_64.rpm'
+	containerd_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.6.33-3.1.el9.x86_64.rpm'
+	docker_buildx_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.14.1-1.el9.x86_64.rpm'
+	docker_ce_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-26.1.4-1.el9.x86_64.rpm'
+	docker_ce_cli_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-26.1.4-1.el9.x86_64.rpm'
+	docker_ce_rootless_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-26.1.4-1.el9.x86_64.rpm'
+	docker_compose_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.27.1-1.el9.x86_64.rpm'
+	wget $containerd_url $docker_buildx_url $docker_ce_url $docker_ce_cli_url $docker_ce_rootless_url $docker_compose_url
 	sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
-	sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-	sudo dnf install pass
-	sudo dnf install gnome-shell-extension-appindicator
+	sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+	sudo dnf install -y pass
+	sudo dnf install -y gnome-shell-extension-appindicator
 	sudo gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
 	sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-	sudo dnf install ./*.rpm -y && sudo rm -f ./*.rpm
-	systemctl --user enable docker-desktop
-	systemctl --user start docker-desktop
+	sudo dnf install -y ./*.rpm -y && sudo rm -f ./*.rpm 
+	sudo systemctl enable docker
+	sudo systemctl start docker
 	echo -e "\e[32mDone!\e[0m"
 	# Install the NVIDIA Container Toolkit⁠ on RHEL9
 	echo
