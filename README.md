@@ -8,7 +8,6 @@
 #
 #### Last
 + Open your browser and visit `localhost:8080`<br/>
-
-
-## Test enviroment
-#### Ubuntu 22.04 LTS
+&nbsp;
+## Test environment
+#### Ubuntu 22.04 LTS / RHEL 9.4
