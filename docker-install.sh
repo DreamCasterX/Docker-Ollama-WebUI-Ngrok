@@ -63,12 +63,12 @@ case $PKG in
 	echo "│                                       │"
 	echo "╰───────────────────────────────────────╯"
 	echo
-	containerd_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.6.33-3.1.el9.x86_64.rpm'
-	docker_buildx_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.14.1-1.el9.x86_64.rpm'
-	docker_ce_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-26.1.4-1.el9.x86_64.rpm'
-	docker_ce_cli_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-26.1.4-1.el9.x86_64.rpm'
-	docker_ce_rootless_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-26.1.4-1.el9.x86_64.rpm'
-	docker_compose_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.27.1-1.el9.x86_64.rpm'
+	containerd_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.6.32-3.1.el9.x86_64.rpm'
+	docker_buildx_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.14.0-1.el9.x86_64.rpm'
+	docker_ce_url='hhttps://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-26.1.2-1.el9.x86_64.rpm'
+	docker_ce_cli_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-26.1.3-1.el9.x86_64.rpm'
+	docker_ce_rootless_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-26.1.3-1.el9.x86_64.rpm'
+	docker_compose_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.27.0-1.el9.x86_64.rpm'
 	wget $containerd_url $docker_buildx_url $docker_ce_url $docker_ce_cli_url $docker_ce_rootless_url $docker_compose_url
 	sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
 	sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
