@@ -7,7 +7,7 @@
 [Prerequisite] You need to register an account at https://ngrok.com and get your Authtoken
 + Power with CPU:
   + Run `export NGROK_AUTHTOKEN=<your_auth_token>`<br/>
-  + Run `dockerdocker compose up -d`<br/>
+  + Run `docker compose up -d`<br/>
   &nbsp;
 + Power with NVIDIA GPU (better performance):
   + Run `export NGROK_AUTHTOKEN=<your_auth_token>`<br/>
