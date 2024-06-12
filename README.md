@@ -19,7 +19,7 @@
   &nbsp;
 + Remote login (Internet):
   + Open your browser and visit `localhost:4040`.
-  + Navigate to Ngrok -> Status -> Configuration -> Check the Tunnels URL (https://*******.ngrk-free.app)<br/>
+  + Navigate to Ngrok -> Status -> Configuration -> Check the Tunnels URL (e.g., `https://*******.ngrok-free.app`)<br/>
 &nbsp;
 #
 ## Test environment
