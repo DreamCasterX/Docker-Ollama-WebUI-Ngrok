@@ -35,6 +35,20 @@ services:
     restart: unless-stopped
     networks:
       - ollama-docker
+      
+  ngrok:
+    image: ngrok/ngrok:alpine
+    container_name: ngrok
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command:
+      - "http"
+      - "open-webui:8080"
+    ports:
+      - 4040:4040
+    restart: unless-stopped
+    networks:
+      - ollama-docker
 
 networks:
   ollama-docker:
