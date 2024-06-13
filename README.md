@@ -1,17 +1,24 @@
 # Ollama + Open WebUI + Ngrok Docker Compose Setup
 ## Deploy LLM with a friendly UI and share it with remote hosts easily
-####  Install Docker and NVIDIA container toolkit (if supported)
-+ Run `bash install_docker.sh` (Skip this if Docker is already installed)
+####  Install Docker and NVIDIA container toolkit (if supported). You can skip this if docker is already installed
+  ```bash
+  bash install_docker.sh
+  ```
+
 #
 #### Install Ollama & Open WebUI & Ngrok
-[Prerequisite] You need to register an account at https://ngrok.com and copy your auth token
+You need to register an account at https://ngrok.com and copy your auth token from there
 + Power with CPU:
-  + Run `export NGROK_AUTHTOKEN=<paste_your_auth_token>`<br/>
-  + Run `docker compose up -d`<br/>
+  ```bash
+  export NGROK_AUTHTOKEN=<paste_your_auth_token_here>
+  docker compose up -d
+  ```
   &nbsp;
-+ Power with NVIDIA GPU (better performance):
-  + Run `export NGROK_AUTHTOKEN=<paste_your_auth_token>`<br/>
-  + Run `docker compose -f docker-compose-NV-GPU up -d`
++ Power with NVIDIA GPU:
+   ```bash
+  export NGROK_AUTHTOKEN=<paste_your_auth_token_here>
+  docker compose -f docker-compose-NV-GPU.yml up -d
+  ``` 
 #
 #### Last
 + Local login:
@@ -20,7 +27,11 @@
 + Remote login (Internet):
   + Open your browser and visit `localhost:4040`.
   + Navigate to Ngrok -> Status -> Configuration -> Check the Tunnels URL (e.g., `https://*******.ngrok-free.app`)<br/>
+  &nbsp;
++ Stop all the docker containers
+  ```bash
+  docker compose down
+  ```
 &nbsp;
-#
 ## Test environment
 Ubuntu 22.04 LTS / RHEL 9.4
