@@ -1,7 +1,7 @@
 # Ollama + Open WebUI + Ngrok Docker Compose Setup
 ## Deploy LLM with a friendly UI and share it with remote hosts easily
 ####  Install Docker and NVIDIA container toolkit (if supported)
-+ Run `bash docker-install.sh` (Skip this if Docker is already installed)
++ Run `bash install_docker.sh` (Skip this if Docker is already installed)
 #
 #### Install Ollama & Open WebUI & Ngrok
 [Prerequisite] You need to register an account at https://ngrok.com and copy your auth token
