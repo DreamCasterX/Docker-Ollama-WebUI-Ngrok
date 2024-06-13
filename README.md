@@ -8,15 +8,17 @@
 #
 #### Install Ollama & Open WebUI & Ngrok
 You need to register an account at https://ngrok.com and copy your auth token from there
-+ Power with CPU:
   ```bash
   export NGROK_AUTHTOKEN=<paste_your_auth_token_here>
+  ```
+
++ Power with CPU:
+  ```bash
   docker compose up -d
   ```
-  &nbsp;
+
 + Power with NVIDIA GPU:
    ```bash
-  export NGROK_AUTHTOKEN=<paste_your_auth_token_here>
   docker compose -f docker-compose-NV-GPU.yml up -d
   ``` 
 #
