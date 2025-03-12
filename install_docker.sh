@@ -32,14 +32,14 @@ case $PKG in
 	sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 	sudo usermod -aG docker $USER && sudo chmod a+rw /var/run/docker.sock
 	echo -e "\e[32mDone!\e[0m"
-	# Install the NVIDIA Container Toolkit⁠ on Ubuntu
+	# Install the NVIDIA Container Toolkit on Ubuntu
 	echo
 	echo "╭───────────────────────────────────────╮"
 	echo "│     Installing NVIDIA Toolkit         │"
 	echo "│                                       │"
 	echo "╰───────────────────────────────────────╯"
 	echo
-	if [[ ! $(lsmod | grep nvidia > /dev/null) ]]; then
+	if [[ $(lsmod | grep nvidia > /dev/null) ]]; then
 		curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 		curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
 		sudo apt update
@@ -63,12 +63,12 @@ case $PKG in
 	echo "│                                       │"
 	echo "╰───────────────────────────────────────╯"
 	echo
-	containerd_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.6.32-3.1.el9.x86_64.rpm'
-	docker_buildx_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.14.0-1.el9.x86_64.rpm'
-	docker_ce_url='hhttps://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-26.1.2-1.el9.x86_64.rpm'
-	docker_ce_cli_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-26.1.3-1.el9.x86_64.rpm'
-	docker_ce_rootless_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-26.1.3-1.el9.x86_64.rpm'
-	docker_compose_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.27.0-1.el9.x86_64.rpm'
+	containerd_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.7.25-3.1.el9.x86_64.rpm'
+	docker_buildx_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.21.1-1.el9.x86_64.rpm'
+	docker_ce_url='hhttps://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-28.0.1-1.el9.x86_64.rpm' #   
+	docker_ce_cli_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-28.0.1-1.el9.x86_64.rpm' #   
+	docker_ce_rootless_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-28.0.1-1.el9.x86_64.rpm' 
+	docker_compose_url='https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.33.1-1.el9.x86_64.rpm'
 	wget $containerd_url $docker_buildx_url $docker_ce_url $docker_ce_cli_url $docker_ce_rootless_url $docker_compose_url
 	sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
 	sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -80,14 +80,14 @@ case $PKG in
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	echo -e "\e[32mDone!\e[0m"
-	# Install the NVIDIA Container Toolkit⁠ on RHEL9
+	# Install the NVIDIA Container Toolkit on RHEL9
 	echo
 	echo "╭───────────────────────────────────────╮"
 	echo "│     Installing NVIDIA Toolkit         │"
 	echo "│                                       │"
 	echo "╰───────────────────────────────────────╯"
 	echo
-	if [[ ! $(lsmod | grep nvidia > /dev/null) ]]; then
+	if [[ $(lsmod | grep nvidia > /dev/null) ]]; then
 		curl -s -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo | sudo tee /etc/yum.repos.d/nvidia-container-toolkit.repo
 		sudo dnf install -y nvidia-container-toolkit
 		# Configure Docker to use Nvidia driver
