@@ -49,6 +49,14 @@ case $PKG in
 	sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 	sudo usermod -aG docker $USER && sudo chmod a+rw /var/run/docker.sock
 	echo -e "${green}Done!${nc}"
+    echo
+    echo
+    read -p "Continue to install NVIDIA toolkit (y/n)? " ans 
+    while [[ "$ans" != [YyNn] ]]; do 
+        read -p "Continue to install NVIDIA toolkit (y/n)? " ans 
+    done     
+    [[ "$ans" == [Nn] ]] && exit 1
+    
 	# Install the NVIDIA Container Toolkit on Ubuntu
 	echo
 	echo "╭───────────────────────────────────────╮"
@@ -81,12 +89,12 @@ case $PKG in
 	echo "╰───────────────────────────────────────╯"
 	echo
     urls=(
-      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.7.25-3.1.el9.x86_64.rpm'
-      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.21.1-1.el9.x86_64.rpm'
-      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-28.0.1-1.el9.x86_64.rpm'
-      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-28.0.1-1.el9.x86_64.rpm'
-      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-28.0.1-1.el9.x86_64.rpm'
-      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.33.1-1.el9.x86_64.rpm'
+      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/containerd.io-1.7.27-3.1.el9.x86_64.rpm'
+      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-buildx-plugin-0.22.0-1.el9.x86_64.rpm'
+      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-28.0.4-1.el9.x86_64.rpm'
+      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-cli-28.0.4-1.el9.x86_64.rpm'
+      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-ce-rootless-extras-28.0.4-1.el9.x86_64.rpm'
+      'https://download.docker.com/linux/rhel/9/x86_64/stable/Packages/docker-compose-plugin-2.34.0-1.el9.x86_64.rpm'
     )
     for url in "${urls[@]}"; do
       filename=$(basename "$url")
@@ -105,6 +113,12 @@ case $PKG in
 	sudo systemctl enable docker
 	sudo systemctl start docker
 	echo -e "${green}Done!${nc}"
+    read -p "Continue to install NVIDIA toolkit (y/n)? " ans 
+    while [[ "$ans" != [YyNn] ]]; do 
+        read -p "Continue to install NVIDIA toolkit (y/n)? " ans 
+    done     
+    [[ "$ans" == [Nn] ]] && exit 1
+     
 	# Install the NVIDIA Container Toolkit on RHEL9
 	echo
 	echo "╭───────────────────────────────────────╮"
