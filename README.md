@@ -35,5 +35,13 @@ You need to register an account at https://ngrok.com and copy your auth token fr
   docker compose down
   ```
 &nbsp;
+
+#### Update Open-web UI
+```bash
+docker rm -f open-webui
+docker pull ghcr.io/open-webui/open-webui:main
+``` 
+This will update the Docker image, but it won't update the running container or its data.
+
 ## Test environment
 Ubuntu 22.04 LTS / RHEL 9.4
