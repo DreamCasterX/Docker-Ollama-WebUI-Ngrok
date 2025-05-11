@@ -1,5 +1,57 @@
 /* styles.css */
 
+/* Color Variables */
+:root {
+    /* Light Mode Colors */
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --container-bg: #ffffff;
+    --header-border: #eee;
+    --header-h1-color: #2c3e50; /* Keep this prominent dark color */
+    --header-p-color: #555;
+    --api-key-h2-color: #2c3e50;
+    --input-border: #ddd;
+    --button-bg-light: #3498db;
+    --button-bg-dark: #2980b9;
+    --user-msg-bg: #3498db;
+    --user-msg-text: white;
+    --system-msg-bg: #f1f1f1;
+    --system-msg-text: #333;
+    --loading-dots-color: #3498db;
+    --error-color: #e74c3c;
+    --toggle-bg-light: #ccc;
+    --toggle-bg-dark: #666; /* Background of the slider when checked */
+    --toggle-thumb-bg: #fff;
+    --toggle-icon-sun: #ffeb3b;
+    --toggle-icon-moon: #e0e0e0;
+}
+
+body.dark-mode {
+    /* Dark Mode Overrides */
+    --bg-color: #2c2c2c;
+    --text-color: #e0e0e0;
+    --container-bg: #3a3a3a;
+    --header-border: #444;
+    --header-h1-color: #f0f0f0; /* Keep this prominent light color */
+    --header-p-color: #bbb;
+    --api-key-h2-color: #f0f0f0;
+    --input-border: #555;
+    --button-bg-light: #4a90e2; /* Slightly different blue for contrast */
+    --button-bg-dark: #3b7bdc;
+    --user-msg-bg: #4a90e2;
+    --user-msg-text: #ffffff;
+    --system-msg-bg: #505050;
+    --system-msg-text: #e0e0e0;
+    --loading-dots-color: #4a90e2;
+    --error-color: #ff6b6b;
+    --toggle-bg-light: #666; /* Background of the slider when unchecked in dark mode */
+    --toggle-bg-dark: #ccc; /* Background of the slider when checked in dark mode */
+    --toggle-thumb-bg: #fff;
+    --toggle-icon-sun: #f0f0f0; /* Adjusted for dark mode background */
+    --toggle-icon-moon: #ffeb3b; /* Adjusted for dark mode background */
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -8,177 +60,180 @@
 }
 
 body {
-    background-color: #f5f5f5; /* 頁面整體背景色 */
-    color: #333; /* 預設文字顏色 */
+    background-color: var(--bg-color); /* Use variable */
+    color: var(--text-color); /* Use variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .container {
-    max-width: 800px; /* 主要內容容器最大寬度 */
-    margin: 30px auto; /* 上下邊距 30px，左右自動居中 */
-    background-color: #ffffff; /* 容器背景為白色 */
-    border-radius: 10px; /* 容器圓角 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 容器陰影 */
-    overflow: hidden; /* 確保內部元素超出時被裁剪，以維持圓角效果 */
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: var(--container-bg); /* Use variable */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative; /* For positioning the toggle switch */
+    padding-top: 35px; /* Make space for the toggle switch */
 }
 
 .header {
-    text-align: center; /* 內部元素（如 H1）居中對齊 */
-    padding: 25px 20px; /* Header 內邊距：上下 25px，左右 20px */
-    border-bottom: 1px solid #eee; /* Header 底部加一條細分隔線 */
-    margin-bottom: 0; /* 移除 header 底部外邊距，由後續容器控制間距 */
+    text-align: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--header-border); /* Use variable */
+    margin-bottom: 0;
 }
 
 .header h1 {
-    color: #2c3e50; /* H1 標題文字顏色 (深灰藍) */
-    margin: 0 auto 8px auto; /* H1 外邊距：上下0，左右自動 (使其在 inline-block 狀態下也能被父層 text-align:center 影響)，底部 8px */
-    font-size: 1.8em; /* H1 字體大小 */
-    font-weight: 600; /* H1 字體粗細 */
+    color: var(--header-h1-color); /* Use variable */
+    margin: 0 auto 8px auto;
+    font-size: 1.8em; /* INCREASE FONT SIZE FOR EMPHASIS */
+    font-weight: 700; /* BOLD FOR EMPHASIS */
 
-    /* --- Logo 背景設定 --- */
-    background-image: url('logo.png'); /* 設定背景圖片為 logo.png */
-    background-repeat: no-repeat; /* 背景圖片不重複 */
-    background-position: 15px center; /* Logo 位置：距離 H1 左邊框 15px，垂直居中 */
-    background-size: 80px auto;       /* Logo 尺寸：寬度設為 80px，高度按比例自動縮放。
-                                          (根據 Lenovo Logo 的常見比例，80px 寬時高度約為 18px)
-                                          您可以根據您的 logo.png 實際觀感調整此數值。 */
+    background-image: url('logo.png');
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-size: 100px auto;
 
-    /* H1 左內邊距，為 Logo 留出空間。
-       計算方式：Logo 左側偏移 (15px) + Logo 寬度 (80px) + Logo 與文字之間的間隔 (15px) = 110px */
-    padding-left: 110px;
+    padding-left: 120px;
 
-    min-height: 30px; /* H1 的最小高度，確保能容納 Logo (Logo 高度約 18px) 和文字 */
-    line-height: 30px; /* H1 的行高，輔助文字在 H1 內垂直居中 */
+    min-height: 30px; /* Keep existing min-height for logo alignment */
+    line-height: 1.2; /* Adjust line-height for larger font size */
+    padding-top: 10px; /* Adjust padding-top for better vertical alignment with logo */
+    padding-bottom: 10px;
 
-    display: inline-block; /* 使 H1 元素寬度適應其內容（包括 Logo 和文字），
-                              並允許 .header 的 text-align: center 將整個 H1 區塊居中 */
-    text-align: left;      /* H1 內部的文字（在左內邊距之後的區域）靠左對齊 */
+    display: inline-block;
+    text-align: left;
 }
 
 .header p {
-    color: #555; /* Header 中副標題文字顏色 */
-    font-size: 0.9em; /* 副標題字體大小 */
-    margin: 0; /* 移除副標題的預設外邊距 */
+    color: var(--header-p-color); /* Use variable */
+    font-size: 0.9em;
+    margin: 0;
 }
 
 /* API 金鑰和聊天容器的通用頂部內邊距 */
 #api-key-container,
 #chat-container {
-    padding-top: 20px;
+    /* padding-top is handled by container now or within the sections themselves */
 }
 
 #api-key-container {
-    padding: 20px 30px 30px 30px; /* API 金鑰容器內邊距：上20，左右下30 */
-    text-align: center; /* 文字居中 */
+    padding: 20px 30px 30px 30px;
+    text-align: center;
 }
 
 #api-key-container h2 {
-    margin-bottom: 15px; /* 標題底部外邊距 */
-    color: #2c3e50; /* 標題顏色 */
+    margin-bottom: 15px;
+    color: var(--api-key-h2-color); /* Use variable */
 }
 
 .input-group {
-    display: flex; /* 輸入框和按鈕使用 flex 佈局 */
-    margin-top: 20px; /* 輸入組頂部外邊距 */
+    display: flex;
+    margin-top: 20px;
 }
 
 .input-group input {
-    flex: 1; /* 輸入框佔據剩餘空間 */
-    padding: 12px; /* 輸入框內邊距 */
-    border: 1px solid #ddd; /* 輸入框邊框 */
-    border-radius: 4px 0 0 4px; /* 輸入框左側圓角 */
-    font-size: 16px; /* 字體大小 */
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--input-border); /* Use variable */
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    background-color: var(--container-bg); /* Ensure input background changes */
+    color: var(--text-color);
 }
 
 .input-group button {
-    padding: 12px 20px; /* 按鈕內邊距 */
-    background-color: #3498db; /* 按鈕背景色 (藍色) */
-    color: white; /* 按鈕文字顏色 */
-    border: none; /* 無邊框 */
-    border-radius: 0 4px 4px 0; /* 按鈕右側圓角 */
-    cursor: pointer; /* 滑鼠指標為手型 */
-    font-size: 16px; /* 字體大小 */
-    transition: background-color 0.3s; /* 背景色過渡效果 */
+    padding: 12px 20px;
+    background-color: var(--button-bg-light); /* Use variable */
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .input-group button:hover {
-    background-color: #2980b9; /* 按鈕滑鼠懸停時背景色加深 */
+    background-color: var(--button-bg-dark); /* Use variable */
 }
 
 #chat-container {
-    height: 500px; /* 聊天容器高度，可依需求調整 */
+    height: 500px;
     display: flex;
-    flex-direction: column; /* 內部元素垂直排列 */
-    padding: 20px 0 0 0; /* 頂部內邊距20px，其餘由子元素控制 */
+    flex-direction: column;
+    padding: 20px 0 0 0;
 }
 
 #chat-messages {
-    flex: 1; /* 聊天訊息區域佔據剩餘垂直空間 */
-    overflow-y: auto; /* 內容超出時顯示垂直滾動條 */
-    padding: 0 20px 20px 20px; /* 內邊距：左右下20px */
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px 20px 20px;
 }
 
 .message {
-    margin-bottom: 15px; /* 每條訊息底部外邊距 */
-    display: flex; /* 使用 flex 佈局 */
+    margin-bottom: 15px;
+    display: flex;
 }
 
 .message.user {
-    justify-content: flex-end; /* 用戶訊息靠右對齊 */
+    justify-content: flex-end;
 }
 
 .message-content {
-    padding: 12px 16px; /* 訊息內容內邊距 */
-    border-radius: 18px; /* 訊息氣泡圓角 */
-    max-width: 70%; /* 訊息內容最大寬度 */
-    word-wrap: break-word; /* 長單詞自動換行 */
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 70%;
+    word-wrap: break-word;
 }
 
 .user .message-content {
-    background-color: #3498db; /* 用戶訊息背景色 (藍色) */
-    color: white; /* 用戶訊息文字顏色 */
-    border-bottom-right-radius: 4px; /* 右下角調整為較小的圓角，形成氣泡感 */
+    background-color: var(--user-msg-bg); /* Use variable */
+    color: var(--user-msg-text); /* Use variable */
+    border-bottom-right-radius: 4px;
 }
 
 .system .message-content {
-    background-color: #f1f1f1; /* 系統訊息背景色 (淺灰色) */
-    color: #333; /* 系統訊息文字顏色 */
-    border-bottom-left-radius: 4px; /* 左下角調整為較小的圓角 */
+    background-color: var(--system-msg-bg); /* Use variable */
+    color: var(--system-msg-text); /* Use variable */
+    border-bottom-left-radius: 4px;
 }
 
 .input-area {
-    display: flex; /* 輸入區域使用 flex 佈局 */
-    padding: 15px 20px; /* 輸入區域內邊距：上下15px，左右20px */
-    border-top: 1px solid #eee; /* 輸入區域頂部邊框 */
+    display: flex;
+    padding: 15px 20px;
+    border-top: 1px solid var(--header-border); /* Use variable */
 }
 
 .input-area textarea {
-    flex: 1; /* 輸入框佔據剩餘空間 */
-    padding: 12px; /* 輸入框內邊距 */
-    border: 1px solid #ddd; /* 輸入框邊框 */
-    border-radius: 4px; /* 輸入框圓角 */
-    resize: none; /* 禁止調整輸入框大小 */
-    height: 50px; /* 輸入框預設高度 */
-    font-size: 16px; /* 字體大小 */
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--input-border); /* Use variable */
+    border-radius: 4px;
+    resize: none;
+    height: 50px;
+    font-size: 16px;
+    background-color: var(--container-bg); /* Ensure textarea background changes */
+    color: var(--text-color);
 }
 
 .input-area button {
-    margin-left: 10px; /* 發送按鈕左側外邊距 */
-    padding: 0 20px; /* 按鈕內邊距 (上下0，左右20) */
-    background-color: #3498db; /* 按鈕背景色 (藍色) */
-    color: white; /* 按鈕文字顏色 */
-    border: none; /* 無邊框 */
-    border-radius: 4px; /* 按鈕圓角 */
-    cursor: pointer; /* 滑鼠指標為手型 */
-    font-size: 16px; /* 字體大小 */
-    transition: background-color 0.3s; /* 背景色過渡效果 */
+    margin-left: 10px;
+    padding: 0 20px;
+    background-color: var(--button-bg-light); /* Use variable */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .input-area button:hover {
-    background-color: #2980b9; /* 按鈕滑鼠懸停時背景色加深 */
+    background-color: var(--button-bg-dark); /* Use variable */
 }
 
 .hidden {
-    display: none !important; /* 隱藏元素的樣式 */
+    display: none !important;
 }
 
 /* Loading 指示器樣式 (原 script.js 會添加 'message' 和 'system' class) */
@@ -186,28 +241,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 0; /* 給予 loading dots 垂直空間 */
+    padding: 10px 0;
 }
 
 .loading-dots span {
-    width: 8px; /* Loading 點的大小 */
+    width: 8px;
     height: 8px;
-    margin: 0 4px; /* 點之間的間距 */
-    background-color: #3498db; /* 點的顏色 (與按鈕一致) */
-    border-radius: 50%; /* 圓形 */
-    animation: bounce 1.4s infinite ease-in-out both; /* 動畫效果 */
+    margin: 0 4px;
+    background-color: var(--loading-dots-color); /* Use variable */
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
 }
 
-/* Loading 動畫延遲，製造錯落感 */
 .loading-dots span:nth-child(1) {
     animation-delay: -0.32s;
 }
 .loading-dots span:nth-child(2) {
     animation-delay: -0.16s;
 }
-/* nth-child(3) animation-delay is 0s (or not set explicitly for 'bounce' ) */
 
-@keyframes bounce { /* Loading 點的跳動動畫 */
+@keyframes bounce {
   0%, 80%, 100% {
     transform: scale(0);
   } 40% {
@@ -216,7 +269,126 @@ body {
 }
 
 .error {
-    color: #e74c3c; /* 錯誤訊息文字顏色 (紅色) */
-    margin-top: 10px; /* 頂部外邊距 */
-    font-size: 0.9em; /* 字體大小 */
+    color: var(--error-color); /* Use variable */
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* --- Theme Toggle Switch Styles --- */
+.theme-switch-wrapper {
+    position: absolute; /* Position absolutely within the container */
+    top: 15px; /* Distance from the top of the container */
+    right: 20px; /* Distance from the right of the container */
+    z-index: 100; /* Ensure it's above other elements */
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px; /* 縮小外框寬度 */
+    height: 28px; /* 縮小外框高度 */
+    margin-left: 10px;
+}
+
+/* Hide default HTML checkbox */
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider (the track) */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-bg-light);
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px; /* 稍微調整左右內邊距，讓縮小後的圖標有更好的空間 */
+    overflow: hidden;
+}
+
+/* The thumb */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; /* 相應縮小滑塊高度 */
+    width: 20px; /* 相應縮小滑塊寬度 */
+    left: 4px; /* Initial position */
+    bottom: 4px;
+    background-color: var(--toggle-thumb-bg);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+/* When checkbox is checked, change slider background */
+input:checked + .slider {
+    background-color: var(--toggle-bg-dark); /* Dark mode track background */
+}
+
+/* When checkbox is checked, move the thumb */
+input:checked + .slider:before {
+    transform: translateX(20px); /* 根據新的滑塊和軌道大小調整移動距離 (48px - 4px*2 - 20px = 20px) */
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px; /* Make slider track rounded */
+}
+
+.slider.round:before {
+    border-radius: 50%; /* Ensure thumb remains round */
+}
+
+/* Icons inside the slider */
+.slider .icon {
+    font-size: 0.8em; /* 進一步縮小圖標字體大小，以適應更小的滑塊 */
+    line-height: 1;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+}
+
+.slider .icon.sun {
+    color: var(--toggle-icon-sun); /* Sun icon color */
+    transition: all 0.4s ease; /* Transition for visibility/color */
+}
+
+.slider .icon.moon {
+    color: var(--toggle-icon-moon); /* Moon icon color */
+    transition: all 0.4s ease;
+}
+
+/* Adjust icon visibility based on theme */
+body.dark-mode .slider .icon.sun {
+    opacity: 0;
+    width: 0; /* Collapse width to prevent pushing moon icon */
+    transform: translateX(-10px); /* Slide out animation */
+}
+
+body:not(.dark-mode) .slider .icon.moon {
+    opacity: 0;
+    width: 0; /* Collapse width to prevent pushing sun icon */
+    transform: translateX(10px); /* Slide out animation */
+}
+
+/* Ensure icons are visible in their respective modes */
+body.dark-mode .slider .icon.moon {
+    opacity: 1;
+    width: auto; /* Restore width */
+    transform: translateX(0);
+}
+
+body:not(.dark-mode) .slider .icon.sun {
+    opacity: 1;
+    width: auto; /* Restore width */
+    transform: translateX(0);
 }

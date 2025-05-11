@@ -8,10 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("user-input");
   const sendButton = document.getElementById("send-button");
 
+  // Theme Toggle Elements
+  const themeCheckbox = document.getElementById("theme-checkbox");
+
   // Variables
   let apiKey = "";
   const baseUrl = "http://localhost:8080";
   const modelId = "customer-support-agent";
+  const DARK_MODE_KEY = "darkModeEnabled"; // Key for localStorage
 
   // Event Listeners
   submitApiKeyBtn.addEventListener("click", handleApiKeySubmit);
@@ -23,7 +27,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Theme Toggle Event Listener
+  themeCheckbox.addEventListener("change", handleThemeToggle);
+
   // Functions
+
+  // Initialize theme on page load
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem(DARK_MODE_KEY);
+    if (savedTheme === "true") {
+      document.body.classList.add("dark-mode");
+      themeCheckbox.checked = true;
+    } else {
+      document.body.classList.remove("dark-mode");
+      themeCheckbox.checked = false;
+    }
+  }
+
+  // Handle theme toggle
+  function handleThemeToggle() {
+    if (themeCheckbox.checked) {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem(DARK_MODE_KEY, "true");
+    } else {
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem(DARK_MODE_KEY, "false");
+    }
+  }
+
   function handleApiKeySubmit() {
     const key = apiKeyInput.value.trim();
     if (!key) {
@@ -190,4 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     errorDiv.textContent = message;
     container.appendChild(errorDiv);
   }
+
+  // Call initializeTheme when the DOM is ready
+  initializeTheme();
 });
