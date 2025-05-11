@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Customer Support Assistant</h1>
+            <p>Ask any question about customer support</p>
+        </div>
+
+        <div id="api-key-container">
+            <h2>Enter your API Key</h2>
+            <p>Please enter your Open WebUI API key to continue</p>
+            <div class="input-group">
+                <input type="password" id="api-key-input" placeholder="Enter your API key">
+                <button id="submit-api-key">Submit</button>
+            </div>
+        </div>
+
+        <div id="chat-container" class="hidden">
+            <div id="chat-messages">
+                <div class="message system">
+                    <div class="message-content">
+                        Hello! I'm your Customer Support Assistant. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="input-area">
+                <textarea id="user-input" placeholder="Type your question here..."></textarea>
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
