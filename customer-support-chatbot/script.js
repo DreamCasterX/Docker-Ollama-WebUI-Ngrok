@@ -13,7 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Variables
   let apiKey = "";
-  const baseUrl = "http://localhost:8080";
+  
+ 
+  // 动态设置 API 服务器地址
+  // 如果是在本地访问，使用 localhost:8080
+  // 如果是远程访问，使用当前主机名但端口改为 8080
+  const currentHost = window.location.hostname;
+  const baseUrl = currentHost === "localhost" || currentHost === "127.0.0.1" 
+    ? "http://localhost:8080"
+    : `http://${currentHost}:8080`;
+    
+  console.log("API Server URL:", baseUrl); // 调试信息
+
   const modelId = "customer-support-agent";
   const DARK_MODE_KEY = "darkModeEnabled"; // Key for localStorage
 
